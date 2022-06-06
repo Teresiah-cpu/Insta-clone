@@ -41,9 +41,9 @@ def create_profile(request):
         user = User.objects.create_user(username=username,password=password)
         profile = Profile.objects.create(user=user,profile_picture=image)
         if profile:
-            # messages.success(request,'Profile Created Please Login')
+            messages.success(request,'Profile Created Please Login')
             return redirect("Login")
-    return render(request,'Signup.html')
+    # return render(request,'Signup.html')
 
 # FOR RENDERING THE PROFILE PAGE
 def profile(request,id=None):
