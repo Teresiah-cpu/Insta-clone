@@ -19,4 +19,4 @@ class Reels(models.Model):
 
 class Story(models.Model):
     story = models.ImageField(upload_to="story")
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    # profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
