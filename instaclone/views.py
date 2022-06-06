@@ -137,7 +137,7 @@ def reels(request):
     return render(request,'reels.html',{'reels':reels,'profileimage':profileimage})
 
 # view to like a reel
-# def like_reel(request,id):
+def like_reel(request,id):
     reel = Reels.objects.get(id=id)
     if request.user in reel.likes.all():
         reel.likes.remove(request.user)
