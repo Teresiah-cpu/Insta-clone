@@ -48,7 +48,7 @@ def create_profile(request):
     return render(request,'Signup.html')
 
 # FOR RENDERING THE PROFILE PAGE
-# def profile(request,id=None):
+def profile(request,id=None):
     if not request.user.is_authenticated:
         return redirect("Login")
     if id is not None:
@@ -69,7 +69,7 @@ def Logout(request):
     logout(request)
     return redirect("Login")
 
-def search(request):
+# def search(request):
     if not request.user.is_authenticated:
         return redirect("Login")
     profile = Profile.objects.get(user=request.user)
