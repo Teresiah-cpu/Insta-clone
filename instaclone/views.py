@@ -84,7 +84,7 @@ def follow(request,id,username):
     profile = Profile.objects.get(id=id)
     Login_profile = Profile.objects.get(user=request.user)
     if request.user in profile.followers.all():
-        profile.followers.remove(request.user)
+        # profile.followers.remove(request.user)
         Login_profile.followings.remove(profile.user)
     else:
         profile.followers.add(request.user)
