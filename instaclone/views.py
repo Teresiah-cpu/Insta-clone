@@ -18,7 +18,7 @@ def index(request):
     story = Story.objects.filter(profile__followers=request.user)
     context = {"posts":posts,'stories':story}
     return render(request,'index.html',context)
-# LOGIN VIEW FOR USER
+# login view
 def Login(request):
     if request.user.is_authenticated:
         return redirect("profile")
@@ -30,7 +30,7 @@ def Login(request):
             login(request,user)
             return redirect("profile")
     return render(request,'Login.html')
-# CREATE PROFILE AND USER SIGNUP VIEW
+# creating a profile
 def create_profile(request):
     if request.user.is_authenticated:
         return redirect("profile")
@@ -43,9 +43,9 @@ def create_profile(request):
         if profile:
             messages.success(request,'Profile Created Please Login')
             return redirect("Login")
-    # return render(request,'Signup.html')
+    return render(request,'Signup.html')
 
-# FOR RENDERING THE PROFILE PAGE
+# rendering the profile page
 def profile(request,id=None):
     if not request.user.is_authenticated:
         return redirect("Login")
@@ -79,7 +79,7 @@ def search(request):
     context = {'profiles':profiles,'username':search,"profileimage":profileimage}
     return render(request,'search.html',context)
 
-# VIEW FOR FOLLOWING THE USER
+# function to follow a user
 def follow(request,id,username):
     profile = Profile.objects.get(id=id)
     Login_profile = Profile.objects.get(user=request.user)
@@ -91,7 +91,7 @@ def follow(request,id,username):
         Login_profile.followings.add(profile.user)
     return redirect(f'/search?username={username}')
 
-# FOR UPLOADING THE POST
+# uploading a post
 def upload_post(request):
     if not request.user.is_authenticated:
         return redirect("Login")
@@ -105,7 +105,7 @@ def upload_post(request):
             messages.success(request,"POST Uploaded")
     return render(request,'uploadposts.html',{'profileimage':profileimage})
 
-# FUNCTION FOR LIKING THE POST
+# function to like a post
 def like_post(request,id):
     post = Post.objects.filter(id=id)
     if request.user in post[0].likes.all():
@@ -114,7 +114,7 @@ def like_post(request,id):
         post[0].likes.add(request.user)
     return redirect("index")
 
-# FOR UPLOADING REEL
+# view for uploading a reel
 def upload_reel(request):
     if not request.user.is_authenticated:
         return redirect("Login")
@@ -127,16 +127,16 @@ def upload_reel(request):
             messages.success(request,'REEL UPLOADED')
     return render(request,'uploadreels.html',{'profileimage':profileimage})
 
-# FOR EXPLORING REELS
+# view for exploring a reel
 def reels(request):
     if not request.user.is_authenticated:
         return redirect("Login")
     profile = Profile.objects.get(user=request.user)
     profileimage = profile.profile_picture.url
     reels = Reels.objects.all()
-    return render(request,'reels.html',{'reels':reels,'profileimage':profileimage})
+    # return render(request,'reels.html',{'reels':reels,'profileimage':profileimage})
 
-# FOR LIKING THE REEL
+# view to like a reel
 def like_reel(request,id):
     reel = Reels.objects.get(id=id)
     if request.user in reel.likes.all():
@@ -145,7 +145,7 @@ def like_reel(request,id):
         reel.likes.add(request.user)
     return redirect("reels")
 
-# FOR UPLOADING STORY
+# uploading a story
 def upload_story(request):
     if not request.user.is_authenticated:
         return redirect("Login")
