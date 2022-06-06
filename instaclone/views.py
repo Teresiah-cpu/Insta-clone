@@ -80,7 +80,7 @@ def search(request):
     return render(request,'search.html',context)
 
 # VIEW FOR FOLLOWING THE USER
-def follow(request,id,username):
+# def follow(request,id,username):
     profile = Profile.objects.get(id=id)
     Login_profile = Profile.objects.get(user=request.user)
     if request.user in profile.followers.all():
