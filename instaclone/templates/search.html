@@ -40,7 +40,7 @@
                 {% else %}
                 <div id="post">
                     <div id="post_header" style="padding: 0 60px">
-                        <!-- <img src="{{profile.profile_picture.url}}" alt="" srcset="" /> -->
+                        <img src="{{profile.profile_picture.url}}" alt="" srcset="" />
                         <a href="/profile/{{profile.id}}">
                             <h4 id="post_user" style="font-weight: 900">
                                 {{profile.user}}
@@ -51,7 +51,7 @@
                     <div class="lower">
                         <a href="/follow/{{profile.id}}/{{username}}" class="text-center btn btn-danger" id="like">
                             Follow
-                        </a>
+                        <!-- </a> -->
                     </div>
                 </div>
                 {% endif %} {% endfor %}
