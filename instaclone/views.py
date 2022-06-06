@@ -2,8 +2,6 @@
 # from django.shortcuts import render
 
 # # Create your views here.
-# def index(request):
-#     return render(request,"index.html")
 
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -69,7 +67,7 @@ def Logout(request):
     logout(request)
     return redirect("Login")
 
-# def search(request):
+def search(request):
     if not request.user.is_authenticated:
         return redirect("Login")
     profile = Profile.objects.get(user=request.user)
