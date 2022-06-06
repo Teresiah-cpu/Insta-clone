@@ -20,7 +20,7 @@ def index(request):
     return render(request,'index.html',context)
 # LOGIN VIEW FOR USER
 def Login(request):
-    # if request.user.is_authenticated:
+    if request.user.is_authenticated:
         return redirect("profile")
     if request.method == 'POST':
         username = request.POST['username']
