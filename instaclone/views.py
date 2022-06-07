@@ -10,6 +10,7 @@ from django.shortcuts import redirect, render
 from .models import Profile,Post, Reels,Story
 from django.contrib.auth import authenticate,login,logout
 from django.db.models import Q
+from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 def index(request):
     if not request.user.is_authenticated:
@@ -30,6 +31,11 @@ def Login(request):
             login(request,user)
             return redirect("profile")
     return render(request,'Login.html')
+
+def register(request):
+    form=UserCreationForm
+    return render(request,'register.html',{'form':form})
+
 # creating a profile
 def create_profile(request):
     if request.user.is_authenticated:
